@@ -21,18 +21,28 @@ const { title } = Astro.props
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class='bg-gray-900 min-h-screen pb-32'>
+
+  <body
+    class='bg-gray-900 min-h-screen pb-32 -scroll-m-0'
+    transition:animate='initial'
+  >
     <Header />
     <main class='max-w-5xl px-4 m-auto'>
       <slot />
       <!-- children in React -->
     </main>
+
     <style is:global>
       html {
         font-family: system-ui, sans-serif;
         background: #13151a;
         background-size: 224px;
         color-scheme: dark light;
+        scrollbar-color: #4f4f4f #13151a;
+      }
+
+      body::-webkit-scrollbar {
+        width: 0;
       }
     </style>
   </body>
