@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title='404 not found'>
+  <div class='max-w-4xl m-auto min-w-full bg-gray-900'>
+    <div class='text-center'>
+      <p class='text-xl font-semibold text-indigo-600'>404</p>
+      <h1 class='mt-4 text-3xl font-bold tracking-tight sm:text-5xl'>
+        Page not found
+      </h1>
+      <p class='mt-6 text-base leading-7 text-gray-600'>
+        Sorry, we couldn’t find the page you’re looking for.
+      </p>
+      <div class='mt-10 flex items-center justify-center gap-x-6'>
+        <a
+          href='..'
+          class='rounded-md bg-gradient-to-r from-indigo-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 px-3.5 py-2.5 text-sm font-semibold text-center mr-2 mb-2 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+          >Go back home</a
+        >
+      </div>
+    </div>
+  </div>
+</Layout>

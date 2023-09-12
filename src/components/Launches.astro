@@ -1,24 +1,10 @@
 ---
-import { type APISpaceXResponse } from '../types/api'
 import CardLaunch from './CardLaunch.astro'
+import { getLatestLaunches } from '../services/spacex'
 
 // we can run the javascript we want
-const res = await fetch('https://api.spacexdata.com/v5/launches/query', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    query: {},
-    options: {
-      sort: {
-        date_unix: 'asc',
-      },
-      limit: 12,
-    },
-  }),
-})
-const { docs: launches } = (await res.json()) as APISpaceXResponse
+
+const launches = await getLatestLaunches()
 ---
 
 <div class='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
