@@ -2,7 +2,6 @@
   
 # 🚀 Beginning of Astro - SpaceX Launches Project
 
-Es parte de un curso hecho por **Midudev** para iniciar en Astro
 </div>
 
 
