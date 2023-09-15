@@ -1,6 +1,7 @@
 ---
+import type { GetStaticPaths } from 'astro'
 import Layout from '../../layouts/Layout.astro'
-import { getLaunchBy } from '../../services/spacex'
+import { getLatestLaunches, getLaunchBy } from '../../services/spacex'
 
 export const prerender = false // server
 
@@ -10,19 +11,52 @@ let launch
 if (id) {
   launch = await getLaunchBy({ id })
 }
+
+export async function getStaticPaths() {
+  const launches = await getLatestLaunches()
+
+  return launches.map(launch => ({
+    params: {
+      id: launch.id,
+    },
+  }))
+}
 ---
 
 <Layout title={`Launch #${id}`}>
-  <article class='flex gap-y-4 flex-col'>
+  <article
+    class='flex gap-4 flex-row items-center m-auto justify-around max-w-4xl'
+  >
     <img
       transition:name={`image-${id}`}
-      class='w-52 h-auto'
+      class='w-90 h-auto'
       src={launch?.links?.patch.small}
       alt={launch?.name}
     />
-    <h2 class='text-4xl text-white font-bold'>
-      Launch #{launch?.flight_number}
-    </h2>
-    <p class='text-lg'>{launch?.details}</p>
+    <div class='max-w-lg'>
+      <h2 class='text-4xl font-bold py-4 text-orange-400'>
+        Launch #{launch?.flight_number}
+      </h2>
+      <p class='text-lg text-white'>{launch?.details}</p>
+    </div>
   </article>
+  <!-- TODO [@abrahamgalue]: mimificar las imagenes para agregar esta funcionalidad -->
+  <!-- {
+    launch?.links?.flickr?.small.length !== 0 && (
+      <h2 class='text-4xl font-bold py-8 text-orange-400'>Images</h2>
+    )
+  }
+  <div class='grid grid-cols-2 gap-4 items-center'>
+    {
+      launch?.links?.flickr?.small.map((image, index) => (
+        <div>
+          <img
+            class='h-auto max-w-full rounded-lg'
+            src={image}
+            alt={`Image #${index} of launch`}
+          />
+        </div>
+      ))
+    }
+  </div> -->
 </Layout>
