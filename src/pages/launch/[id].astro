@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 
 <Layout title={`Launch #${id}`}>
   <article
-    class='flex gap-4 flex-row items-center m-auto justify-around max-w-4xl'
+    class='flex gap-4 flex-col items-center m-auto justify-around max-w-4xl md:flex-row'
   >
     <img
       transition:name={`image-${id}`}
@@ -37,7 +37,7 @@ export async function getStaticPaths() {
       <h2 class='text-4xl font-bold py-4 text-orange-400'>
         Launch #{launch?.flight_number}
       </h2>
-      <p class='text-lg text-white'>{launch?.details}</p>
+      <p class='[text-wrap:balance] text-lg text-white'>{launch?.details}</p>
     </div>
   </article>
   <!-- TODO [@abrahamgalue]: mimificar las imagenes para agregar esta funcionalidad -->
